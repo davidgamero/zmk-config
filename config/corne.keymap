@@ -37,6 +37,16 @@
                         key-positions = <2 3>;
                         bindings = <&kp ESC>;
                 };
+                combo_tab{
+                        timeout-ms = <50>;
+                        key-positions = <3 4>;
+                        bindings = <&kp TAB>;
+                };
+                combo_caps_word{
+                        timeout-ms = <50>;
+                        key-positions = <4 5>;
+                        bindings = <&caps_word>;
+                };
                 combo_ret {
                         timeout-ms = <50>;
                         key-positions = <8 9>;
@@ -62,38 +72,38 @@
 // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
 // | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | SPC | RSE  | ALT |
+//                    | GUI | NUM |  SPC |   | SPC | SYM | ALT |
                         bindings = <
    &kp ESC   &kp Q &lt NUM W  &lt SYM E   &lt FUNC R &kp T             &kp Y          &lt FUNC U  &lt SYM I      &lt NUM O    &kp P    &kp BSPC
    &kp TAB   &kp A &hm LALT S &hm LCTRL D &mt LGUI F &kp G             &kp H          &mt RGUI J  &mt RCTRL K    &mt RALT L   &kp SEMI &kp SQT 
    &kp LSHFT &kp Z &kp X      &kp C       &kp V      &kp B             &kp N          &kp M       &kp COMMA      &kp DOT      &kp FSLH &kp ESC
-                              &kp LGUI    &mo 1      &hm LSFT SPACE    &mt RSFT SPACE &mo 2       &kp RALT
+                              &kp LGUI    &mo NUM    &hm LSFT SPACE    &mt RSFT SPACE &mo SYM     &kp RALT
                         >;
                 };
                 lower_layer {
 // -----------------------------------------------------------------------------------------
 // |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | BTCLR|     |  =  |  [  |  ]  |  `  |   | LFT | DWN |  UP | RGT |     |      |
 // | SHFT |     |     |     |     |     |   | DEL | BKSP|  -  |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8    &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP    &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &kp DEL  &kp BSPC &kp MINUS &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6     &kp N7   &kp N8    &kp N9    &kp N0    &kp BSPC
+   &kp TAB    &trans       &kp EQUAL    &kp LBKT     &kp RBKT     &kp GRAVE      &kp LEFT   &kp DOWN &kp UP    &kp RIGHT &trans    &trans
+   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &kp DEL    &kp BSPC &kp MINUS &trans    &trans    &trans
+                                        &kp LGUI     &trans       &kp SPACE      &kp RET    &trans   &kp RALT
                         >;
                 };
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
 // | ESC  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | TAB  |     |  =  |  [  |  ]  |  `  |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |  (  |  )  |  |  |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+// | TAB  |     |  =  |  {  |  }  |  `  |   |  -  |  =  |     |     |  \  |  `   |
+// | SHFT |     |     |  (  |  )  |  |  |   |  _  |  +  |     |     | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp  ESC  &kp EXCL &kp AT    &kp HASH &kp DLLR    &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp TAB   &trans   &kp EQUAL &kp LBRC &kp RBRC    &kp GRAVE &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans    &kp LPAR &kp RPAR    &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+   &kp TAB   &trans   &kp EQUAL &kp LBRC &kp RBRC    &kp GRAVE   &kp MINUS &kp EQUAL &trans          &trans   &kp BSLH &kp GRAVE
+   &kp LSHFT &trans   &trans    &kp LPAR &kp RPAR    &trans      &kp UNDER &kp PLUS  &trans          &trans   &kp PIPE &kp TILDE
                              &kp LGUI    &trans      &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
