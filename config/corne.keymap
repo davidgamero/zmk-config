@@ -80,31 +80,31 @@
                               &kp LGUI    &mo NUM    &hm LSFT SPACE    &mt RSFT SPACE &mo SYM     &kp RALT
                         >;
                 };
-                lower_layer {
+                num_layer {
 // -----------------------------------------------------------------------------------------
 // |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
 // | BTCLR|     |  =  |  [  |  ]  |  `  |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   | DEL | BKSP|  -  |     |     |      |
+// | SHFT |     |     |  (  |  )  |  |  |   | DEL | BKSP|  -  |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6     &kp N7   &kp N8    &kp N9    &kp N0    &kp BSPC
    &kp TAB    &trans       &kp EQUAL    &kp LBKT     &kp RBKT     &kp GRAVE      &kp LEFT   &kp DOWN &kp UP    &kp RIGHT &trans    &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &kp DEL    &kp BSPC &kp MINUS &trans    &trans    &trans
-                                        &kp LGUI     &trans       &kp SPACE      &kp RET    &trans   &kp RALT
+   &kp LSHFT  &trans       &trans       &kp LPAR     &kp RPAR     &kp PIPE       &kp DEL    &kp BSPC &kp MINUS &trans    &trans    &trans
+                                        &trans       &trans       &trans         &trans     &trans   &trans
                         >;
                 };
 
-                raise_layer {
+                shift_layer{
 // -----------------------------------------------------------------------------------------
 // | ESC  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | TAB  |     |  =  |  {  |  }  |  `  |   |  -  |  =  |     |     |  \  |  `   |
-// | SHFT |     |     |  (  |  )  |  |  |   |  _  |  +  |     |     | "|" |  ~   |
+// | TAB  |     |  +  |  {  |  }  |  ~  |   |     |     |     |     |  \  |  `   |
+// | SHFT |     |     |  (  |  )  | "|" |   |     |     |  _  |     | "|" |  ~   |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp  ESC  &kp EXCL &kp AT    &kp HASH &kp DLLR    &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp TAB   &trans   &kp EQUAL &kp LBRC &kp RBRC    &kp GRAVE   &kp MINUS &kp EQUAL &trans          &trans   &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans    &kp LPAR &kp RPAR    &trans      &kp UNDER &kp PLUS  &trans          &trans   &kp PIPE &kp TILDE
-                             &kp LGUI    &trans      &kp SPACE   &kp RET   &trans    &kp RALT
+   &kp TAB   &trans   &kp PLUS  &kp LBRC &kp RBRC    &kp TILDE   &trans    &trans    &trans          &trans   &kp BSLH &kp GRAVE
+   &kp LSHFT &trans   &trans    &kp LPAR &kp RPAR    &kp PIPE    &trans    &trans    &kp UNDER       &trans   &kp PIPE &kp TILDE
+                                &trans   &trans      &trans      &trans    &trans    &trans
                         >;
                 };
 
