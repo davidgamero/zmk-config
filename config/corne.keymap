@@ -74,10 +74,10 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
 //                    | GUI | NUM |  SPC |   | SPC | SYM | ALT |
                         bindings = <
-   &kp ESC   &kp Q &lt NUM W  &lt SYM E   &lt FUNC R          &kp T             &kp Y          &lt FUNC U          &lt SYM I      &lt NUM O    &kp P    &kp BSPC
-   &kp TAB   &kp A &hm LALT S &hm LCTRL D &mt LGUI F          &kp G             &kp H          &mt RGUI J          &mt RCTRL K    &mt RALT L   &kp SEMI &kp SQT 
-   &kp LSHFT &kp Z &kp X      &kp C       &mt LA(LS(LCTRL)) V &kp B             &kp N          &mt LA(LS(LCTRL)) M &kp COMMA      &kp DOT      &kp FSLH &kp RSFT 
-                              &kp LGUI    &kp BSPC            &hm LSFT SPACE    &mt RSFT SPACE &kp RET             &kp RALT
+   &kp ESC   &kp Q &lt FUNC W  &lt SYM E   &lt NUM R           &kp T             &kp Y          &lt NUM U           &lt SYM I      &lt FUNC O   &kp P    &kp BSPC
+   &kp TAB   &kp A &hm LALT S  &hm LCTRL D &mt LGUI F          &kp G             &kp H          &mt RGUI J          &mt RCTRL K    &mt RALT L   &kp SEMI &kp SQT 
+   &kp LSHFT &kp Z &kp X       &kp C       &mt LA(LS(LCTRL)) V &kp B             &kp N          &mt LA(LS(LCTRL)) M &kp COMMA      &kp DOT      &kp FSLH &kp RSFT 
+                               &kp BSPC    &mt LSFT SPACE      &hm LSFT SPACE    &mt RSFT SPACE &mt RSFT SPACE      &kp RET 
                         >;
                 };
                 num_layer {
