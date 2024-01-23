@@ -5,8 +5,8 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
 
 #define DEFAULT 0
 #define NUM 1
@@ -14,112 +14,127 @@
 #define FUNC 3
 
 / {
-        behaviors {
-                hm: homerow_mods {
-                compatible = "zmk,behavior-hold-tap";
-                label = "HOMEROW_MODS";
-                #binding-cells = <2>;
-                tapping-term-ms = <150>;
-                quick-tap-ms = <0>;
-                flavor = "tap-preferred";
-                bindings = <&kp>, <&kp>;
-                };
-        }; 
-// -----------------------------------------------------------------------------------------
-// |  0   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7   |  8  |  9  |  10 | 11   |
-// | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | 37  | 38  |   |  39 |  40  | ALT |
-        combos {
-                compatible = "zmk,combos";
-                combo_esc {
-                        timeout-ms = <50>;
-                        key-positions = <2 3>;
-                        bindings = <&kp ESC>;
-                };
-                combo_tab{
-                        timeout-ms = <50>;
-                        key-positions = <3 4>;
-                        bindings = <&kp TAB>;
-                };
-                combo_caps_word{
-                        timeout-ms = <50>;
-                        key-positions = <4 5>;
-                        bindings = <&caps_word>;
-                };
-                combo_ret {
-                        timeout-ms = <50>;
-                        key-positions = <8 9>;
-                        bindings = <&kp RET>;
-                };
-                combo_l_bootloader {
-                        timeout-ms = <50>;
-                        key-positions = <0 1 4 5>;
-                        bindings = <&bootloader>;
-                };
-                combo_r_bootloader {
-                        timeout-ms = <50>;
-                        key-positions = <6 7 10 11>;
-                        bindings = <&bootloader>;
-                };
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+
+            require-prior-idle-ms = <50>;
         };
- 
-        keymap {
-                compatible = "zmk,keymap";
+    };
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | NUM |  SPC |   | SPC | SYM | ALT |
-                        bindings = <
-   &kp ESC   &kp Q &lt FUNC W  &lt SYM E   &lt NUM R           &kp T             &kp Y          &lt NUM U           &lt SYM I      &lt FUNC O   &kp P    &kp BSPC
-   &kp TAB   &kp A &hm LALT S  &hm LCTRL D &mt LGUI F          &kp G             &kp H          &mt RGUI J          &mt RCTRL K    &mt RALT L   &kp SEMI &kp SQT 
-   &kp LSHFT &kp Z &kp X       &kp C       &mt LA(LS(LCTRL)) V &kp B             &kp N          &mt LA(LS(LCTRL)) M &kp COMMA      &kp DOT      &kp FSLH &kp RSFT 
-                               &kp BSPC    &mt LSFT SPACE      &hm LSFT SPACE    &mt RSFT SPACE &mt RSFT SPACE      &kp RET 
-                        >;
-                };
-                num_layer {
-// -----------------------------------------------------------------------------------------
-// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR|     |  =  |  [  |  ]  |  `  |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |  (  |  )  |  |  |   | DEL | BKSP|  -  |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6     &kp N7   &kp N8    &kp N9    &kp N0    &kp BSPC
-   &kp TAB    &trans       &kp EQUAL    &kp LBKT     &kp RBKT     &kp GRAVE      &kp LEFT   &kp DOWN &kp UP    &kp RIGHT &trans    &trans
-   &kp LSHFT  &trans       &trans       &kp LPAR     &kp RPAR     &kp PIPE       &kp DEL    &kp BSPC &kp MINUS &trans    &trans    &trans
-                                        &trans       &trans       &trans         &trans     &trans   &trans
-                        >;
-                };
+    // -----------------------------------------------------------------------------------------
+    // |  0   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7   |  8  |  9  |  10 | 11   |
+    // | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+    // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+    //                    | GUI | 37  | 38  |   |  39 |  40  | ALT |
 
-                shift_layer{
-// -----------------------------------------------------------------------------------------
-// | ESC  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | TAB  |     |  +  |  {  |  }  |  ~  |   |     |     |     |     |  \  |  `   |
-// | SHFT |     |     |  (  |  )  | "|" |   |     |     |  _  |     | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp  ESC  &kp EXCL &kp AT    &kp HASH &kp DLLR    &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp TAB   &trans   &kp PLUS  &kp LBRC &kp RBRC    &kp TILDE   &trans    &trans    &trans          &trans   &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans    &kp LPAR &kp RPAR    &kp PIPE    &trans    &trans    &kp UNDER       &trans   &kp PIPE &kp TILDE
-                                &trans   &trans      &trans      &trans    &trans    &trans
-                        >;
-                };
+    combos {
+        compatible = "zmk,combos";
 
-                f_layer{
-// -----------------------------------------------------------------------------------------
-// | ESC  | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    |     |     |     |   |     |     |     |
-                        bindings = <
-   &kp  ESC   &kp F1       &kp F2       &kp F3       &kp F4       &kp F5         &kp F6    &kp F7    &kp F8     &kp F9    &kp F10  &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT &trans   &trans
-   &trans     &trans       &trans       &trans       &trans       &trans         &trans    &trans    &trans     &trans    &trans   &trans    
-                             &trans     &trans      &trans        &trans        &trans    &trans
-                        >;
-                };
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp ESC>;
         };
+
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            bindings = <&kp TAB>;
+        };
+
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <4 5>;
+            bindings = <&caps_word>;
+        };
+
+        combo_ret {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&kp RET>;
+        };
+
+        combo_l_bootloader {
+            timeout-ms = <50>;
+            key-positions = <0 1 4 5>;
+            bindings = <&bootloader>;
+        };
+
+        combo_r_bootloader {
+            timeout-ms = <50>;
+            key-positions = <6 7 10 11>;
+            bindings = <&bootloader>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+            // | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+            //                    | GUI | NUM |  SPC |   | SPC | SYM | ALT |
+
+            bindings = <
+&kp ESC    &kp Q  &lt FUNC W  &lt SYM E    &lt NUM R            &kp T             &kp Y           &lt NUM U            &lt SYM I    &lt FUNC O  &kp P     &kp BSPC
+&kp TAB    &kp A  &hm LALT S  &hm LCTRL D  &hm LEFT_GUI F       &kp G             &kp H           &hm RGUI J           &hm RCTRL K  &hm RALT L  &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z  &kp X       &kp C        &mt LA(LS(LCTRL)) V  &kp B             &kp N           &mt LA(LS(LCTRL)) M  &kp COMMA    &kp DOT     &kp FSLH  &kp RSFT
+                              &kp BSPC     &mt LSFT SPACE       &hm LSFT SPACE    &mt RSFT SPACE  &mt RSFT SPACE       &kp RET
+            >;
+        };
+
+        num_layer {
+            // -----------------------------------------------------------------------------------------
+            // |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+            // | BTCLR|     |  =  |  [  |  ]  |  `  |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |  (  |  )  |  |  |   | DEL | BKSP|  -  |     |     |      |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
+            bindings = <
+&kp ESC    &kp N1  &kp N2     &kp N3    &kp N4    &kp N5       &kp N6    &kp N7    &kp N8     &kp N9     &kp N0  &kp BSPC
+&kp TAB    &trans  &kp EQUAL  &kp LBKT  &kp RBKT  &kp GRAVE    &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &trans  &trans
+&kp LSHFT  &trans  &trans     &kp LPAR  &kp RPAR  &kp PIPE     &kp DEL   &kp BSPC  &kp MINUS  &trans     &trans  &trans
+                              &trans    &trans    &trans       &trans    &trans    &trans
+            >;
+        };
+
+        shift_layer {
+            // -----------------------------------------------------------------------------------------
+            // | ESC  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
+            // | TAB  |     |  +  |  {  |  }  |  ~  |   |     |     |     |     |  \  |  `   |
+            // | SHFT |     |     |  (  |  )  | "|" |   |     |     |  _  |     | "|" |  ~   |
+            //                    | GUI |     | SPC |   | ENT |     | ALT |
+
+            bindings = <
+&kp ESC    &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
+&kp TAB    &trans    &kp PLUS  &kp LBRC  &kp RBRC  &kp TILDE    &trans     &trans    &trans           &trans    &kp BSLH  &kp GRAVE
+&kp LSHFT  &trans    &trans    &kp LPAR  &kp RPAR  &kp PIPE     &trans     &trans    &kp UNDER        &trans    &kp PIPE  &kp TILDE
+                               &trans    &trans    &trans       &trans     &trans    &trans
+            >;
+        };
+
+        f_layer {
+            // -----------------------------------------------------------------------------------------
+            // | ESC  | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 | BKSP |
+            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+            //                    |     |     |     |   |     |     |     |
+
+            bindings = <
+&kp ESC     &kp F1        &kp F2        &kp F3        &kp F4        &kp F5          &kp F6    &kp F7    &kp F8  &kp F9     &kp F10  &kp BSPC
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans   &trans
+&trans      &trans        &trans        &trans        &trans        &trans          &trans    &trans    &trans  &trans     &trans   &trans
+                                        &trans        &trans        &trans          &trans    &trans    &trans
+            >;
+        };
+    };
 };
